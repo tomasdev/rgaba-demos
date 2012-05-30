@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <title>demo</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="http://static.albumgram.me/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="demo.css" media="screen" />
+</head>
+<body>
+
+<header class="banner">
+    <i class="icon"></i> R<span>/</span>GA
+</header>
+
+<div class="first">
+    <h1>Grabbing data for <strong>Tech</strong> blogs</h1>
+</div>
+
+<div class="second">
+    <h1></h1>
+    <div class="row">
+        <ul id="relevant" class="span5"></ul>
+        <ul id="influential" class="span5"></ul>
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="demo.js"></script>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1730140-18']);
+  _gaq.push(['_setDomainName', 'albumgram.me']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

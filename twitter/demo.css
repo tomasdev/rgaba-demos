@@ -1,0 +1,127 @@
+html, body {
+    height: 100%;
+}
+body {
+    background: -webkit-radial-gradient(50% 50%, cover, #E31835 0%, #950D23 100%);
+    background: -moz-radial-gradient(45px 45px, cover, rgb(255, 0, 0) 0%, rgb(0, 0, 255) 100%);
+    background: -ms-radial-gradient(45px 45px, cover, rgb(255, 0, 0) 0%, rgb(0, 0, 255) 100%);
+    background: -o-radial-gradient(45px 45px, cover, rgb(255, 0, 0) 0%, rgb(0, 0, 255) 100%);
+    background: radial-gradient(45px 45px, cover, rgb(255, 0, 0) 0%, rgb(0, 0, 255) 100%);
+    color: #fff;
+}
+p {
+    margin: 0;
+}
+.hidden {
+    display: none;
+}
+.banner {
+    background: #fff;
+    color: #000;
+    font-size: 4em;
+    font-weight: bold;
+    height: 1.5em;
+    line-height: 1.4em;
+    padding: 0 0 0 .35em;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+}
+.banner .icon {
+    background: #E51837;
+    display: inline-block;
+    height: .7em;
+    width: .7em;
+}
+.banner span {
+    font-weight: 200;
+}
+.first {
+    line-height: 15;
+    position: absolute; left: 0; right: 0; bottom: 0;
+    top: 6em; /* 4em * 1.5em */
+    text-align: center;
+    width: 100%;
+}
+h1 {
+    font-weight: 100;
+    font-size: 4em;
+    line-height: 1;
+    padding: 1em 0 0;
+    text-align: center;
+}
+h1 strong {
+    font-weight: 400;
+}
+.first input {
+    color: #222;
+    font-size: 2.3em;
+    height: 1.3em;
+    width: 15em;
+}
+.second {
+    display: none;
+    position: absolute; left: 0; right: 0; bottom: 0;
+    top: 6em; /* 4em * 1.5em */
+}
+.second .row {
+    display: none;
+    margin: 0 auto;
+    width: 62em;
+}
+.second ul {
+    list-style: none;
+}
+.second h1 {
+    padding: .5em 0;
+}
+
+.second li {
+    background: #fff;
+    background-image: -webkit-linear-gradient(bottom, #e0e0e0 0%, #fff 100%);
+    background-image: -moz-linear-gradient(bottom, #e0e0e0 0%, #fff 100%);
+    background-image: -ms-linear-gradient(bottom, #e0e0e0 0%, #fff 100%);
+    background-image: -o-linear-gradient(bottom, #e0e0e0 0%, #fff 100%);
+    background-image: linear-gradient(bottom, #e0e0e0 0%, #fff 100%);
+    border: 1px solid #BEBEBE;
+    border-radius: 5px;
+    color: #222;
+    margin: -1px auto 0;
+    overflow: hidden;
+    padding: 5px 7px;
+    position: relative;
+    z-index: 6;
+}
+.second li strong {
+    color: #E51837;
+}
+.second li img {
+    position: absolute; top: 6px; left: 6px;
+    width: 48px;
+}
+.second li div {
+    padding:0 0 0 58px;
+}
+.second li span {
+    color: #950D23;
+    font-size: .85em;
+}
+.second li:nth-child(2) {
+    opacity: .9;
+    width: 93%;
+    z-index: 5;
+}
+.second li:nth-child(3) {
+    opacity: .77;
+    width: 88%;
+    z-index: 4;
+}
+.second li:nth-child(4) {
+    opacity: .6;
+    width: 83%;
+    z-index: 3;
+}
+.second li:nth-child(5) {
+    opacity: .45;
+    width: 78%;
+    z-index: 2;
+}
