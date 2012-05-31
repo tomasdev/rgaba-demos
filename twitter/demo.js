@@ -3,15 +3,15 @@
  * CURRENT STATUS
  *
  * - Currently using REST API
- * - Tweets dont get updated (no live movement)
+ * - Slider by dates (10 days setup)
  * - Plenty of TODOs
  */
 
-// TODO: you should be able to add as many twitter accounts / lists as you want ;)
+// TODO: you should be able to add as many twitter accounts / lists as you want ;) #POSTPONED
 
 var USERNAMES = {
-    // tech: ['gizmodo', 'verge', 'techcrunch', 'engadget', 'mashable', 'wired', 'lifehacker', 'smashingmag',
-tech: [         'RWW']
+    tech: ['gizmodo', 'verge', 'techcrunch', 'engadget', 'mashable', 'wired', 'lifehacker', 'smashingmag', 'RWW']
+// tech: [         'RWW']
 };
 
 var SELECTED = USERNAMES.tech;
@@ -74,11 +74,8 @@ var SELECTED = USERNAMES.tech;
     };
 
     updateView = function() {
-        // TODO: order by DATE
-        // TODO: add filter by DATE
-        // TODO: animate tweets moving
-        // TODO: only 1 tweet per blog ??
-        // TODO: array texts could look better
+        // TODO: animate tweets moving #IMPROVE
+        // TODO: only 1 tweet per blog ?? #OPTIMIZE
         if (collection.length) {
             var influential = [];
             var influentialDone = [];
@@ -137,7 +134,6 @@ var SELECTED = USERNAMES.tech;
                 relevant.push('</li>');
             }
 
-            // TODO: make these fancy
             $('#influential').html(influential.join(''));
             $('#relevant').html(relevant.join(''));
 
@@ -145,7 +141,7 @@ var SELECTED = USERNAMES.tech;
             $second.parent().show();
             $second.not(':visible') && $second.fadeIn(300);
         } else {
-            // TODO: get more tweets?
+            // TODO: get more tweets? #POSTPONED
             setTimeout(updateView, 5000);
         }
     };
