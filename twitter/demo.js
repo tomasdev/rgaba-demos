@@ -10,8 +10,8 @@
 // TODO: you should be able to add as many twitter accounts / lists as you want ;)
 
 var USERNAMES = {
-    tech: ['gizmodo', 'verge', 'techcrunch', 'engadget', 'mashable', 'wired', 'lifehacker',
-            'smashingmag', 'RWW']
+    // tech: ['gizmodo', 'verge', 'techcrunch', 'engadget', 'mashable', 'wired', 'lifehacker', 'smashingmag',
+tech: [         'RWW']
 };
 
 var SELECTED = USERNAMES.tech;
@@ -22,10 +22,14 @@ var SELECTED = USERNAMES.tech;
 
     var $terms,
         $second,
+        $range,
         run,
+        createDates,
+        perDate,
         updateView,
         getData,
         parseTweets,
+        smallDate,
         onDocumentReady,
         collection;
 
@@ -36,7 +40,37 @@ var SELECTED = USERNAMES.tech;
             });
         }
 
+        createDates();
         updateView();
+    };
+
+    createDates = function() {
+        var day = 24 * 60 * 60 * 1000,
+            prevDays = 10,
+            updateDates = function( event, ui ) {
+                var now = +new Date(),
+                    start = smallDate(now - (prevDays - ui.values[0]) * day),
+                    end = smallDate(new Date() - (prevDays - ui.values[1]) * day);
+                $( '#amount' ).text( start + ' - ' + end );
+                updateView();
+            };
+        $range.slider({
+            range: true,
+            min: 0,
+            max: prevDays,
+            values: [0, prevDays],
+            slide: updateDates
+        });
+        updateDates(null, {values:[0, prevDays]});
+    };
+
+    perDate = {
+        init: function() {
+            $range.slider('values');
+            return function() {
+
+            };
+        }
     };
 
     updateView = function() {
@@ -49,7 +83,9 @@ var SELECTED = USERNAMES.tech;
             var influential = [];
             var influentialDone = [];
             var done = {};
+            collection = collection.filter(perDate.init());
             collection.filter(function(a) {
+                console.log('a');
                 if (!done[a.user] || done[a.user].followers < a.followers) {
                     done[a.user] = a;
                 }
@@ -108,10 +144,10 @@ var SELECTED = USERNAMES.tech;
             $('.first').fadeOut(300);
             $second.parent().show();
             $second.not(':visible') && $second.fadeIn(300);
+        } else {
+            // TODO: get more tweets?
+            setTimeout(updateView, 5000);
         }
-
-        // TODO: get more tweets!
-        setTimeout(updateView, 5000);
     };
 
     getData = function(username, callback) {
@@ -136,9 +172,15 @@ var SELECTED = USERNAMES.tech;
         window.collection = collection;
     };
 
+    smallDate = function(timestamp) {
+        var d = new Date(timestamp);
+        return d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
+    };
+
     onDocumentReady = function() {
         collection = [];
         $second = $('.second .row');
+        $range = $('#range');
         run();
     };
 
