@@ -38,10 +38,14 @@ var SELECTED = USERNAMES.tech;
         PREV_DAYS = 10;
 
     run = function() {
-        for (var i = 0, blog; blog = SELECTED[i++]; ) {
-            getData(blog, function(response) {
-                parseTweets(response);
-            });
+        if (!localStorage.getItem('collection')) {
+            for (var i = 0, blog; blog = SELECTED[i++]; ) {
+                getData(blog, function(response) {
+                    parseTweets(response);
+                });
+            }
+        } else {
+            collection = JSON.parse(localStorage.getItem('collection'));
         }
 
         createDates();
@@ -76,9 +80,10 @@ var SELECTED = USERNAMES.tech;
             // console.log(range, 'range');
             return function(element) {
                 // TODO: resolve this properly #POSTPONED
+                var d = +new Date(element.date);
                 return (minDate != maxDate) ?
-                            (+element.date >= minDate && +element.date <= maxDate) :
-                            (+element.date >= minDate && +element.date <= (minDate + DAY));
+                            (d >= minDate && d <= maxDate) :
+                            (d >= minDate && d <= (minDate + DAY));
             };
         }
     };
@@ -158,7 +163,7 @@ var SELECTED = USERNAMES.tech;
             $second.parent().show();
             $second.not(':visible') && $second.fadeIn(300);
 
-            collection = window.collection;
+            collection = JSON.parse(localStorage.getItem('collection'));
         } else {
             // TODO: get more tweets? #POSTPONED
             setTimeout(updateView, 5000);
@@ -184,7 +189,7 @@ var SELECTED = USERNAMES.tech;
                 retweets: item.retweet_count || 0
             });
         }
-        window.collection = collection;
+        localStorage.setItem('collection', JSON.stringify(collection));
     };
 
     smallDate = function(timestamp) {

@@ -7,10 +7,10 @@ html, body {
 }
 body {
     background: -webkit-radial-gradient(50% 50%, cover, #E31835 0%, #950D23 100%);
-    background: -moz-radial-gradient(45px 45px, cover, rgb(255, 0, 0) 0%, rgb(0, 0, 255) 100%);
-    background: -ms-radial-gradient(45px 45px, cover, rgb(255, 0, 0) 0%, rgb(0, 0, 255) 100%);
-    background: -o-radial-gradient(45px 45px, cover, rgb(255, 0, 0) 0%, rgb(0, 0, 255) 100%);
-    background: radial-gradient(45px 45px, cover, rgb(255, 0, 0) 0%, rgb(0, 0, 255) 100%);
+    background: -moz-radial-gradient(50% 50%, cover, #E31835 0%, #950D23 100%);
+    background: -ms-radial-gradient(50% 50%, cover, #E31835 0%, #950D23 100%);
+    background: -o-radial-gradient(50% 50%, cover, #E31835 0%, #950D23 100%);
+    background: radial-gradient(50% 50%, cover, #E31835 0%, #950D23 100%);
     color: #fff;
 }
 p {
