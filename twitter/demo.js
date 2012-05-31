@@ -26,6 +26,7 @@ var SELECTED = USERNAMES.tech;
         run,
         createDates,
         perDate,
+        createMarkup,
         updateView,
         getData,
         parseTweets,
