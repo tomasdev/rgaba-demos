@@ -33,7 +33,7 @@ var SELECTED = USERNAMES.tech;
         collection;
 
     var DAY = 24 * 60 * 60 * 1000,
-        PREV_DAYS = 10;
+        PREV_DAYS = 7;
 
     run = function() {
         if (!localStorage.getItem('collection')) {
@@ -170,7 +170,7 @@ var SELECTED = USERNAMES.tech;
     };
 
     getData = function(username, callback) {
-        $.getJSON('http://api.twitter.com/1/statuses/user_timeline.json?include_rts=true&screen_name=' + username + '&callback=?&count=100', function(response) {
+        $.getJSON('http://api.twitter.com/1/statuses/user_timeline.json?exclude_replies=true&include_rts=true&screen_name=' + username + '&callback=?&count=100', function(response) {
             // console.log(response);
             callback(response);
         });
