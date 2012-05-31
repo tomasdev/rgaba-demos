@@ -135,8 +135,18 @@ var SELECTED = USERNAMES.tech;
                 createMarkup(relevant, item, 'retweets');
             }
 
-            $('#influential').html(influential.join(''));
-            $('#relevant').html(relevant.join(''));
+            $('#influential')
+                .find('li').addClass('remove').end()
+                .append(influential.join(''))
+                .find('li').fadeIn(300);
+            $('#relevant')
+                .find('li').addClass('remove').end()
+                .append(relevant.join(''))
+                .find('li').fadeIn(300);
+
+            setTimeout(function() {
+                $('li.remove').remove();
+            }, 300);
 
             $('.first').fadeOut(300);
             $second.parent().show();
