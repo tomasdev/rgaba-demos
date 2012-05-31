@@ -34,6 +34,9 @@ var SELECTED = USERNAMES.tech;
         onDocumentReady,
         collection;
 
+    var DAY = 24 * 60 * 60 * 1000,
+        PREV_DAYS = 10;
+
     run = function() {
         for (var i = 0, blog; blog = SELECTED[i++]; ) {
             getData(blog, function(response) {
@@ -46,33 +49,36 @@ var SELECTED = USERNAMES.tech;
     };
 
     createDates = function() {
-        var day = 24 * 60 * 60 * 1000,
-            prevDays = 10,
-            updateDates = function( event, ui ) {
+        var updateDates = function( event, ui ) {
                 var now = +new Date(),
-                    start = smallDate(now - (prevDays - ui.values[0]) * day),
-                    end = smallDate(new Date() - (prevDays - ui.values[1]) * day);
+                    start = smallDate(now - (PREV_DAYS - ui.values[0]) * DAY),
+                    end = smallDate(now - (PREV_DAYS - ui.values[1]) * DAY);
                 $( '#amount' ).text( start + ' - ' + end );
-                updateView();
                 // console.log(ui.values);
             };
         $range.slider({
             range: true,
             min: 0,
-            max: prevDays,
-            values: [0, prevDays],
-            slide: updateDates
+            max: PREV_DAYS,
+            values: [0, PREV_DAYS],
+            slide: updateDates,
+            change: updateView
         });
-        updateDates(null, {values:[0, prevDays]});
+        updateDates(null, {values:[0, PREV_DAYS]});
     };
 
     perDate = {
         init: function() {
-            $range.slider('values');
-            return function() {
-
+            var range = $range.slider('values'),
+                now = +new Date(),
+                minDate = now - (PREV_DAYS - range[0]) * DAY,
+                maxDate = now - (PREV_DAYS - range[1]) * DAY;
             // console.log(range, 'range');
+            return function(element) {
                 // TODO: resolve this properly #POSTPONED
+                return (minDate != maxDate) ?
+                            (+element.date >= minDate && +element.date <= maxDate) :
+                            (+element.date >= minDate && +element.date <= (minDate + DAY));
             };
         }
     };
@@ -151,6 +157,8 @@ var SELECTED = USERNAMES.tech;
             $('.first').fadeOut(300);
             $second.parent().show();
             $second.not(':visible') && $second.fadeIn(300);
+
+            collection = window.collection;
         } else {
             // TODO: get more tweets? #POSTPONED
             setTimeout(updateView, 5000);
