@@ -53,6 +53,7 @@ var SELECTED = USERNAMES.tech;
                     end = smallDate(new Date() - (prevDays - ui.values[1]) * day);
                 $( '#amount' ).text( start + ' - ' + end );
                 updateView();
+                // console.log(ui.values);
             };
         $range.slider({
             range: true,
@@ -69,6 +70,8 @@ var SELECTED = USERNAMES.tech;
             $range.slider('values');
             return function() {
 
+            // console.log(range, 'range');
+                // TODO: resolve this properly #POSTPONED
             };
         }
     };
@@ -81,8 +84,8 @@ var SELECTED = USERNAMES.tech;
             var influentialDone = [];
             var done = {};
             collection = collection.filter(perDate.init());
+            // console.log(collection.length);
             collection.filter(function(a) {
-                console.log('a');
                 if (!done[a.user] || done[a.user].followers < a.followers) {
                     done[a.user] = a;
                 }
