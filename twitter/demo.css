@@ -80,18 +80,7 @@ h1 strong {
 }
 
 .second li {
-    background: #fff;
-    background-image: -webkit-linear-gradient(bottom, #e0e0e0 0%, #fff 100%);
-    background-image: -moz-linear-gradient(bottom, #e0e0e0 0%, #fff 100%);
-    background-image: -ms-linear-gradient(bottom, #e0e0e0 0%, #fff 100%);
-    background-image: -o-linear-gradient(bottom, #e0e0e0 0%, #fff 100%);
-    background-image: linear-gradient(bottom, #e0e0e0 0%, #fff 100%);
-    border: 1px solid #BEBEBE;
-    border-radius: 5px;
-    color: #222;
     margin: -1px auto 0;
-    overflow: hidden;
-    padding: 5px 7px;
     position: relative;
     z-index: 6;
     -webkit-transition: opacity .3s ease-in-out;
@@ -99,20 +88,6 @@ h1 strong {
     -o-transition: opacity .3s ease-in-out;
     -ms-transition: opacity .3s ease-in-out;
     transition: opacity .3s ease-in-out;
-}
-.second li strong {
-    color: #E51837;
-}
-.second li img {
-    position: absolute; top: 6px; left: 6px;
-    width: 48px;
-}
-.second li div {
-    padding:0 0 0 58px;
-}
-.second li span {
-    color: #950D23;
-    font-size: .85em;
 }
 .second li:nth-child(2) {
     opacity: .9;

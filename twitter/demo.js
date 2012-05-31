@@ -9,11 +9,9 @@
 
 // TODO: you should be able to add as many twitter accounts / lists as you want ;) #POSTPONED
 // TODO: throttle requests ?
-// TODO: save on localstorage!
 
 var USERNAMES = {
     tech: ['gizmodo', 'verge', 'techcrunch', 'engadget', 'mashable', 'wired', 'lifehacker', 'smashingmag', 'RWW']
-// tech: [         'RWW']
 };
 
 var SELECTED = USERNAMES.tech;
@@ -90,12 +88,11 @@ var SELECTED = USERNAMES.tech;
 
     createMarkup = function(arr, item, property) {
         arr.push('<li class="hidden">');
-        arr.push('<img src="' + item.avatar + '" alt="" />');
-        arr.push('<div>');
-        arr.push('<strong>@' + item.user + '</strong>');
+        arr.push('<blockquote class="twitter-tweet">');
         arr.push('<p>' + item.tweet + '</p>');
-        arr.push('<span>' + item[property] + ' ' + property + '</span>');
-        arr.push('</div>');
+        arr.push('&mdash; ' + item.user + ' (@' + item.username + ')');
+        arr.push('<a href="https://twitter.com/' + item.username + '/status/' + item.id + '" data-datetime="' + item.date + '"></a>');
+        arr.push('</blockquote>');
         arr.push('</li>');
     };
 
@@ -155,6 +152,8 @@ var SELECTED = USERNAMES.tech;
                 .append(relevant.join(''))
                 .find('li').fadeIn(300);
 
+            twttr.widgets && twttr.widgets.load();
+
             setTimeout(function() {
                 $('li.remove').remove();
             }, 300);
@@ -181,8 +180,10 @@ var SELECTED = USERNAMES.tech;
         for (var i = 0, item; item = arrTweets[i++]; ) {
             // console.log(item);
             collection.push({
-                user: item.user.screen_name,
-                date: new Date(item.created_at),
+                id: item.id_str,
+                username: item.user.screen_name,
+                user: item.user.name,
+                date: item.created_at,
                 avatar: item.user.profile_image_url,
                 followers: item.user.followers_count,
                 tweet: item.text,
