@@ -76,6 +76,17 @@ var SELECTED = USERNAMES.tech;
         }
     };
 
+    createMarkup = function(arr, item, property) {
+        arr.push('<li class="hidden">');
+        arr.push('<img src="' + item.avatar + '" alt="" />');
+        arr.push('<div>');
+        arr.push('<strong>@' + item.user + '</strong>');
+        arr.push('<p>' + item.tweet + '</p>');
+        arr.push('<span>' + item[property] + ' ' + property + '</span>');
+        arr.push('</div>');
+        arr.push('</li>');
+    };
+
     updateView = function() {
         // TODO: animate tweets moving #IMPROVE
         // TODO: only 1 tweet per blog ?? #OPTIMIZE
@@ -100,14 +111,7 @@ var SELECTED = USERNAMES.tech;
                 item = influentialDone[i];
                 if (!item) { continue; }
                 // console.log(item);
-                influential.push('<li>');
-                    influential.push('<img src="' + item.avatar + '" alt="" />');
-                    influential.push('<div>');
-                        influential.push('<strong>@' + item.user + '</strong>');
-                        influential.push('<p>' + item.tweet + '</p>');
-                        influential.push('<span>' + item.followers + ' followers</span>');
-                    influential.push('</div>');
-                influential.push('</li>');
+                createMarkup(influential, item, 'followers');
             }
 
             var relevant = [];
@@ -127,14 +131,7 @@ var SELECTED = USERNAMES.tech;
             for (var i = 0, item; i < 5; i++) {
                 item = relevantDone[i];
                 if (!item) { continue; }
-                relevant.push('<li>');
-                    relevant.push('<img src="' + item.avatar + '" alt="" />');
-                    relevant.push('<div>');
-                        relevant.push('<strong>@' + item.user + '</strong>');
-                        relevant.push('<p>' + item.tweet + '</p>');
-                        relevant.push('<span>' + item.retweets + ' retweets</span>');
-                    relevant.push('</div>');
-                relevant.push('</li>');
+                createMarkup(relevant, item, 'retweets');
             }
 
             $('#influential').html(influential.join(''));
