@@ -8,6 +8,8 @@
  */
 
 // TODO: you should be able to add as many twitter accounts / lists as you want ;) #POSTPONED
+// TODO: throttle requests ?
+// TODO: save on localstorage!
 
 var USERNAMES = {
     tech: ['gizmodo', 'verge', 'techcrunch', 'engadget', 'mashable', 'wired', 'lifehacker', 'smashingmag', 'RWW']
@@ -16,8 +18,6 @@ var USERNAMES = {
 
 var SELECTED = USERNAMES.tech;
 
-// TODO: throttle requests ?
-// TODO: save on localstorage!
 (function(window, jQuery) {
 
     var $terms,
